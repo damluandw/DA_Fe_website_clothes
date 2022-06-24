@@ -1,0 +1,588 @@
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text product-more">
+          <a href="./home.html"><i class="fa fa-home"></i> Home</a>
+          <a href="./shop.html">Shop</a>
+          <span>Detail</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<!-- Product Shop Section Begin -->
+<section class="product-shop spad page-details">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="filter-widget">
+          <h4 class="fw-title">Categories</h4>
+          <ul class="filter-catagories">
+            <li [ngClass]="{ 'filter-active': filterActive == 'Men' }">
+              <a (click)="switchData('category', 'Men')">Men</a>
+            </li>
+            <li [ngClass]="{ 'filter-active': filterActive == 'Women' }">
+              <a (click)="switchData('category', 'Women')">Women</a>
+            </li>
+            <li [ngClass]="{ 'filter-active': filterActive == 'Kid' }">
+              <a (click)="switchData('category', 'Kid')">Kids</a>
+            </li>
+          </ul>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Brand</h4>
+          <ul class="filter-brand">
+            <li
+              [ngClass]="{ 'filter-active': filterActive == item.name }"
+              *ngFor="let item of brands"
+            >
+              <a id="{{ item.id }}" (click)="switchData('brand', item.name)">
+                {{ item.name }}</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Price</h4>
+          <div class="filter-range-wrap">
+            <div class="range-slider">
+              <div class="price-input">
+                <input
+                  [(ngModel)]="filter.priceMin"
+                  type="text"
+                  id="minamount"
+                />
+                <input
+                  [(ngModel)]="filter.priceMax"
+                  type="text"
+                  id="maxamount"
+                />
+              </div>
+            </div>
+          </div>
+          <a (click)="switchData('price', 'price')" class="filter-btn"
+            >Filter</a
+          >
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Color</h4>
+          <div class="fw-color-choose">
+            <div
+              [ngClass]="{ 'filter-active': filterActive == item.color }"
+              class="cs-item"
+              *ngFor="let item of colors"
+            >
+              <input
+                type="radio"
+                id="cs-{{ item.color }}"
+                (click)="switchData('color', item.color)"
+              />
+              <label class="cs-{{ item.color }}" for="cs-{{ item.color }}">{{
+                item.color
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Size</h4>
+          <div class="fw-size-choose">
+            <div
+              [ngClass]="{ 'filter-active': filterActive == item.size }"
+              class="sc-item"
+              *ngFor="let item of sizes"
+            >
+              <input
+                *ngIf="item.id != 6"
+                type="radio"
+                id="{{ item.size }}-size"
+                (click)="switchData('size', item.size)"
+              />
+              <label *ngIf="item.id != 6" for="{{ item.size }}-size">{{
+                item.size
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Style</h4>
+          <div class="fw-tags">
+            <a
+              [ngClass]="{ 'filter-active': filterActive == item.style }"
+              (click)="switchData('style', item.style)"
+              *ngFor="let item of styles"
+              >{{ item.style }}</a
+            >
+            <!-- <a href="#">Shoes</a>
+          <a href="#">Coat</a>
+          <a href="#">Dresses</a>
+          <a href="#">Trousers</a>
+          <a href="#">Men's hats</a>
+          <a href="#">Backpack</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="product-pic-zoom">
+              <img class="product-big-img" src="{{ imgShow }}" alt="" />
+              <!-- <div class="zoom-icon">
+                <i class="fa fa-search-plus"></i>
+              </div> -->
+            </div>
+            <div class="product-thumbs">
+              <div class="product-thumbs-track ps-slider owl-carousel">
+                <div class="pt" (click)="initImgShow(productDetail.image)">
+                  <img src="{{ productDetail.image }}" alt="" />
+                </div>
+                <div *ngFor="let item of imgs" class="pt">
+                  <img (click)="initImgShow(item)" src="{{ item }}" alt="" />
+                </div>
+                <!-- <div class="pt" data-imgbigurl="assets/img/product-single/product-3.jpg"><img
+                                      src="assets/img/product-single/product-3.jpg" alt=""></div>
+                              <div class="pt" data-imgbigurl="assets/img/product-single/product-3.jpg"><img
+                                      src="assets/img/product-single/product-3.jpg" alt=""></div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="product-details">
+              <div class="pd-title">
+                <span>{{ productDetail.brand.name }}</span>
+                <h3>{{ productDetail.name }}</h3>
+                <a class="heart-icon"
+                  ><i class="icon_heart_alt"></i
+                ></a>
+              </div>
+              <div class="pd-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                <span>(5)</span>
+              </div>
+              <div class="pd-desc">
+                <p>{{ productDetail.description }}</p>
+                <h4>
+                  {{ productDetail.priceOut
+                  }}<span>{{ productDetail.discount }}</span>
+                </h4>
+              </div>
+              <div class="pd-color">
+                <h6>Color</h6>
+                <div class="pd-color-choose">
+                  <div
+                    (click)="choiceColor(item.color)"
+                    (click)="colorActive = item.color.color"
+                    class="cc-item"
+                    *ngFor="let item of colorsDetail"
+                  >
+                    <input type="radio" id="cc-{{ item.color.color }}" />
+                    <label
+                      for="cc-{{ item.color.color }}"
+                      [ngStyle]="{ background: item.color.color }"
+                      [ngClass]="{ active: colorActive === item.color.color }"
+                    ></label>
+                  </div>
+                </div>
+              </div>
+              <div class="pd-size-choose">
+                <div
+                  (click)="choiceSize(item.size)"
+                  (click)="sizeActive = item.size.size"
+                  class="sc-item"
+                  *ngFor="let item of sizesDetail"
+                >
+                  <input type="radio" id="sm-{{ item.size.size }}" />
+                  <label
+                    for="sm-{{ item.size.size }}"
+                    [ngClass]="{ active: sizeActive === item.size.size }"
+                    >{{ item.size.size }}</label
+                  >
+                </div>
+                <!-- <div class="sc-item">
+                                  <input type="radio" id="md-size">
+                                  <label for="md-size">m</label>
+                              </div>
+                              <div class="sc-item">
+                                  <input type="radio" id="lg-size">
+                                  <label for="lg-size">l</label>
+                              </div>
+                              <div class="sc-item">
+                                  <input type="radio" id="xl-size">
+                                  <label for="xl-size">xs</label>
+                              </div> -->
+              </div>
+              <div class="quatity-buy">
+                <div class="change_quatity_product quantity">
+                  <div class="change_quatity_item">
+                    <div
+                      (click)="preQuatity(orderDetail.quatity)"
+                      class="change_quatity change_quatity_pre"
+                    >
+                      -
+                    </div>
+                    <div class="quatity_number">{{ orderDetail.quatity }}</div>
+                    <div
+                      (click)="upQuatity(orderDetail.quatity)"
+                      class="change_quatity change_quatity_add"
+                    >
+                      +
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <a (click)="addtoCart()" class="primary-btn pd-cart"
+                    >Add To Cart</a
+                  >
+                </div>
+              </div>
+              <ul class="pd-tags">
+                <li>
+                  <span>categoriesDetail: </span
+                  ><a *ngFor="let item of categoriesDetail"
+                    >{{ item.category.name }}
+                  </a>
+                </li>
+                <li>
+                  <span>TAGS: </span
+                  ><a *ngFor="let item of stylesDetail"
+                    >{{ item.style.style }}
+                  </a>
+                </li>
+              </ul>
+              <div class="pd-share">
+                <div class="p-code">Sku : 00012</div>
+                <div class="pd-social">
+                  <a href="#"><i class="ti-facebook"></i></a>
+                  <a href="#"><i class="ti-twitter-alt"></i></a>
+                  <a href="#"><i class="ti-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-tab">
+          <div class="tab-item">
+            <ul class="nav" role="tablist">
+              <li>
+                <a
+                [ngClass]="{ 'active': showNavActive == 1 }"
+                (click)="showNavActive=1"
+                  data-toggle="tab"
+                  role="tab"
+                  >DESCRIPTION</a
+                >
+              </li>
+              <li>
+                <a
+                [ngClass]="{ 'active': showNavActive == 2 }"
+                (click)="showNavActive=2"
+                  data-toggle="tab"
+                  role="tab"
+                  >SPECIFICATIONS</a
+                >
+              </li>
+              <li>
+                <a
+                [ngClass]="{ 'active': showNavActive == 3 }"
+                (click)="showNavActive=3"
+                  data-toggle="tab"
+                  role="tab"
+                  >Customer Reviews ({{ feebacks.length }})</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="tab-item-content">
+            <div class="tab-content">
+              <div
+                class="tab-pane fade-in"
+                [ngClass]="{ 'active': showNavActive == 1 }"
+                id="tab-1"
+                role="tabpanel"
+              >
+                <div class="product-content">
+                  <div class="row">
+                    <div class="col-lg-7">
+                      <h5>Introduction</h5>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex
+                        ea commodo consequat. Duis aute irure dolor in
+                      </p>
+                      <h5>Features</h5>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex
+                        ea commodo consequat. Duis aute irure dolor in
+                      </p>
+                    </div>
+                    <div class="col-lg-5">
+                      <img
+                        src="assets/img/product-single/tab-desc.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade "
+                [ngClass]="{ 'active show': showNavActive == 2 }"
+                id="tab-2"
+                role="tabpanel"
+              >
+                <div class="specification-table">
+                  <table>
+                    <tr>
+                      <td class="p-catagory">Customer Rating</td>
+                      <td>
+                        <div class="pd-rating">
+                          <i *ngIf="ratePro >= 1" class="fa fa-star"></i>
+                          <i *ngIf="ratePro >= 1.5" class="fa fa-star"></i>
+                          <i *ngIf="ratePro >= 2.5" class="fa fa-star"></i>
+                          <i *ngIf="ratePro >= 3.5" class="fa fa-star"></i>
+                          <i *ngIf="ratePro >= 4.5" class="fa fa-star"></i>
+                          <i *ngIf="ratePro < 1.5" class="fa fa-star-o"></i>
+                          <i *ngIf="ratePro < 2.5" class="fa fa-star-o"></i>
+                          <i *ngIf="ratePro < 3.5" class="fa fa-star-o"></i>
+                          <i *ngIf="ratePro < 4.5" class="fa fa-star-o"></i>
+                          <span> ({{ratePro | number}})</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-catagory">Price</td>
+                      <td>
+                        <div class="p-price">{{ productDetail.priceOut }}</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-catagory">Add To Cart</td>
+                      <td>
+                        <div class="cart-add">+ add to cart</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-catagory">Availability</td>
+                      <td>
+                        <div class="p-stock">22 in stock</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-catagory">Weight</td>
+                      <td>
+                        <div class="p-weight">1,3kg</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-catagory">Size</td>
+                      <td>
+                        <div class="p-size">Xxl</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-catagory">Color</td>
+                      <td><span class="cs-color"></span></td>
+                    </tr>
+                    <tr>
+                      <td class="p-catagory">Sku</td>
+                      <td>
+                        <div class="p-code">00012</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                [ngClass]="{ 'active show': showNavActive == 3 }"
+
+                id="tab-3"
+                role="tabpanel"
+              >
+                <div class="customer-review-option">
+                  <h4>{{ feebacks.length }} Comments</h4>
+                  <div class="comment-option">
+                    <div class="co-item" *ngFor="let item of feebacks">
+                      <div class="avatar-pic">
+                        <img src="{{ item.avatar }}" alt="" />
+                      </div>
+                      <div class="avatar-text">
+                        <div class="at-rating">
+                          <i *ngIf="item.rate >= 1" class="fa fa-star"></i>
+                          <i *ngIf="item.rate >= 1.5" class="fa fa-star"></i>
+                          <i *ngIf="item.rate >= 2.5" class="fa fa-star"></i>
+                          <i *ngIf="item.rate >= 3.5" class="fa fa-star"></i>
+                          <i *ngIf="item.rate >= 4.5" class="fa fa-star"></i>
+                          <i *ngIf="item.rate < 1.5" class="fa fa-star-o"></i>
+                          <i *ngIf="item.rate < 2.5" class="fa fa-star-o"></i>
+                          <i *ngIf="item.rate < 3.5" class="fa fa-star-o"></i>
+                          <i *ngIf="item.rate < 4.5" class="fa fa-star-o"></i>
+                        </div>
+                        <h5>
+                          {{ item.fullName
+                          }}<span>{{
+                            item.createDate | date: "yyyy-MM-dd"
+                          }}</span>
+                        </h5>
+                        <div class="at-reply">{{ item.content }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="leave-comment">
+                    <h4>Leave A Comment</h4>
+                    <form action="#" class="comment-form">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <h6>Rating</h6>
+                          <div class="rating">
+                            <i
+                              (click)="initRate(1)"
+                              *ngIf="feedback.rate >= 1"
+                              class="fa fa-star"
+                            ></i>
+                            <i
+                              (click)="initRate(2)"
+                              *ngIf="feedback.rate >= 2"
+                              class="fa fa-star"
+                            ></i>
+                            <i
+                              (click)="initRate(3)"
+                              *ngIf="feedback.rate >= 3"
+                              class="fa fa-star"
+                            ></i>
+                            <i
+                              (click)="initRate(4)"
+                              *ngIf="feedback.rate >= 4"
+                              class="fa fa-star"
+                            ></i>
+                            <i
+                              (click)="initRate(5)"
+                              *ngIf="feedback.rate >= 5"
+                              class="fa fa-star"
+                            ></i>
+                            <!-- <i (click)="initRate(1)" *ngIf="feedback.rate <=5" class="fa fa-star-o"></i> -->
+                            <i
+                              (click)="initRate(feedback.rate + 1)"
+                              *ngIf="feedback.rate <= 4"
+                              class="fa fa-star-o"
+                            ></i>
+                            <i
+                              (click)="initRate(feedback.rate + 2)"
+                              *ngIf="feedback.rate <= 3"
+                              class="fa fa-star-o"
+                            ></i>
+                            <i
+                              (click)="initRate(feedback.rate + 3)"
+                              *ngIf="feedback.rate <= 2"
+                              class="fa fa-star-o"
+                            ></i>
+                            <i
+                              (click)="initRate(feedback.rate + 4)"
+                              *ngIf="feedback.rate <= 1"
+                              class="fa fa-star-o"
+                            ></i>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <input
+                            [(ngModel)]="feedback.fullName"
+                            name="fullName"
+                            type="text"
+                            placeholder="Name"
+                          />
+                        </div>
+                        <div class="col-lg-6">
+                          <input
+                            [(ngModel)]="feedback.email"
+                            name="email"
+                            type="text"
+                            placeholder="Email"
+                          />
+                        </div>
+                        <div class="col-lg-12">
+                          <textarea
+                            [(ngModel)]="feedback.content"
+                            name="content"
+                            placeholder="Messages"
+                          ></textarea>
+                          <button
+                            (click)="postFeeback()"
+                            type="submit"
+                            class="site-btn"
+                          >
+                            Send message
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Product Shop Section End -->
+
+<!-- Related Products Section End -->
+<div class="related-products spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title">
+          <h2>Related Products</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-sm-6" *ngFor="let p of productsRelate">
+        <div class="product-item">
+          <div class="pi-pic">
+            <img src="{{ p.image }}" alt="" />
+            <div *ngIf="p.discount - p.priceOut > 0" class="sale">Sale</div>
+            <div class="icon">
+              <i class="icon_heart_alt"></i>
+            </div>
+            <ul>
+              <li class="w-icon active">
+                <a><i class="icon_bag_alt"></i></a>
+              </li>
+              <li class="quick-view">
+                <a (click)="switchShopDetail( p.id, p.name)">+ Quick View</a>
+              </li>
+              <!-- <li class="w-icon">
+                <a><i class="fa fa-random"></i></a>
+              </li> -->
+            </ul>
+          </div>
+          <div class="pi-text">
+            <div class="catagory-name">{{ p.brand.name }}</div>
+            <a (click)="switchShopDetail( p.id, p.name)">
+              <h5>{{ p.name }}</h5>
+            </a>
+            <div class="product-price">
+              {{ p.priceOut }}
+              <span *ngIf="p.discount - p.priceOut > 0">{{ p.discount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Related Products Section End -->

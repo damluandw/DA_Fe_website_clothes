@@ -1,0 +1,59 @@
+<div>
+  <!-- Breadcrumb Section Begin -->
+  <div class="container">
+    <table class="product" border="1" cellspacing="1" cellpadding="5">
+      <tr>
+        <td>Tên sản phẩm:</td>
+        <td>{{ product.name }}</td>
+      </tr>
+      <tr>
+        <td>Giá nhập</td>
+        <td>{{ product.priceIn }}</td>
+      </tr>
+      <tr>
+        <td>Giá bán</td>
+        <td>{{ product.priceOut }}</td>
+      </tr>
+      <tr>
+        <td>Giảm giá</td>
+        <td>{{ product.discount }}</td>
+      </tr>
+      <tr>
+        <td>Ảnh</td>
+        <td>{{ product.image }}</td>
+      </tr>
+      <tr>
+        <td>Ảnh phụ</td>
+        <td>{{ product.images }}</td>
+      </tr>
+      <tr>
+        <td>Postcode:</td>
+        <td>{{ product.description }}</td>
+      </tr>
+      <tr>
+        <td>Ngày đăng ký</td>
+        <td>{{ product.createDate | date: "yyyy-MM-dd" }}</td>
+      </tr>
+      <tr>
+        <td>Ngày đăng ký</td>
+        <td>{{ product.updateDate | date: "yyyy-MM-dd" }}</td>
+      </tr>
+      <tr>
+        <td>Ngày đăng ký</td>
+        <td>{{ product.countView }}</td>
+      </tr>
+      <tr>
+        <td>Ngày đăng ký</td>
+        <td>{{ product.countBuy }}</td>
+      </tr>
+      <tr>
+        <td>Ngày đăng ký</td>
+        <td>{{ product.showHome }}</td>
+      </tr>
+      <tr>
+        <td>Ngày đăng ký</td>
+        <td>{{ product.status }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

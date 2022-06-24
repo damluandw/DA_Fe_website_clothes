@@ -1,0 +1,93 @@
+<div>
+  <div class="from">
+    <table class="edit-category-body">
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Mã danh mục</th>
+        <td class="col-sm-8">
+          <input class="form-control" type="text" [(ngModel)]="category.id" name="id" />
+        </td>
+      </tr>
+      <tr>
+        <th class="col-sm-4 col-form-label">Tên danh mục</th>
+        <td class="col-sm-8">
+          <input class="form-control" type="text" [(ngModel)]="category.name" name="name" />
+        </td>
+      </tr>
+      <tr>
+        <th class="col-sm-4 col-form-label">Lớp cha</th>
+        <td class="col-sm-8">
+          <select class="form-control" [(ngModel)]="category.parentId">
+            <option>--- Chọn danh mục ---</option>
+            <option value="{{ cate.id }}" *ngFor="let cate of categories">
+              {{ cate.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th class="col-sm-4 col-form-label">Mô tả</th>
+        <td class="col-sm-8">
+          <textarea class="form-control"
+            [(ngModel)]="category.description"
+            name="description"
+          ></textarea
+          ><br />
+        </td>
+      </tr>
+
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Hiện thị trên bảng Category</th>
+        <td class="col-sm-8 form-check">
+          <input  class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="category.showCategory"
+            name="showHome"
+          />
+          <label  for="showHome" class="form-check-label">Hiển thị</label>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Trạng thái</th>
+        <td class="col-sm-8 form-check">
+          <input  class="form-check-input" type="checkbox" [(ngModel)]="category.status" name="status" />
+          <label for="status" class="form-check-label">Hoạt động</label>
+        </td>
+      </tr>
+      <tr>
+        <th>&nbsp;</th>
+        <td>
+          <button  class="btn btn-primary" (click)="add()">Thêm mới</button>
+          <button  class="btn btn-primary btn-margin" (click)="update()">Lưu</button>
+          <button  class="btn btn-primary btn-margin" (click)="initReset()">Reset</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <table border="1" cellspacing="0" cellpadding="5">
+      <tr>
+        <th>STT</th>
+        <!-- <th>Mã danh mục</th> -->
+        <th>Tên danh mục</th>
+        <th>Id lớp cha</th>
+        <th>Trang chủ</th>
+        <th>Mô tả</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+      </tr>
+      <tr *ngFor="let item of categories; let i = index">
+        <td>{{ i + 1 }}</td>
+        <!-- <td>{{ item.id }}</td> -->
+        <td>{{ item.name }}</td>
+        <td>{{ item.parentId }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.showCategory ? "Hiện thị" : "Ẩn" }}</td>
+        <td>{{ item.status ? "Hoạt động" : "Ẩn" }}</td>
+        <td>
+          <button class="btn btn-primary btn-update" (click)="initUpdate(item)">Sửa</button
+          ><button class="btn btn-primary btn-margin" (click)="remove(item)">Xóa</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

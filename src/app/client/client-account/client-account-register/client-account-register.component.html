@@ -1,0 +1,123 @@
+
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text product-more">
+          <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+          <a href="./shop.html">Account</a>
+          <span>Account Register</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<!-- Shopping Cart Section Begin -->
+<section class="checkout-section spad">
+  <div class="container">
+    <form action="#" class="checkout-form">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4>Biiling Details</h4>
+          <form [formGroup]="frmCustomer" class="row">
+            <div class="col-lg-6">
+              <label for="fir">First Name<span>*</span></label>
+              <input type="text" id="fir" formControlName="firstName" />
+              <p
+                *ngIf="(frmCustomer.get('firstName')?.invalid||frmCustomer.get('firstName')?.errors?.['required'])&& (frmCustomer.get('firstName')?.dirty || frmCustomer.get('firstName')?.touched)"
+              >
+                Vui lòng không để trống
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <label for="last">Last Name<span>*</span></label>
+              <input type="text" id="last" formControlName="lastName" />
+              <p
+              *ngIf="(frmCustomer.get('lastName')?.invalid||frmCustomer.get('lastName')?.errors?.['required'])&& (frmCustomer.get('lastName')?.dirty || frmCustomer.get('lastName')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <!-- <div class="col-lg-12">
+              <label for="cun-name">Company Name</label>
+              <input type="text" id="cun-name" formControlName="companyName" />
+            </div> -->
+            <div class="col-lg-12">
+              <label for="cun">Country<span>*</span></label>
+              <input type="text" id="cun" formControlName="country" />
+              <p
+              *ngIf="(frmCustomer.get('country')?.invalid||frmCustomer.get('country')?.errors?.['required'])&& (frmCustomer.get('country')?.dirty || frmCustomer.get('country')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-12">
+              <label for="street">Street Address<span>*</span></label>
+              <input
+                type="text"
+                id="street"
+                class="street-first"
+                formControlName="streetAddress"
+              />
+              <p
+              *ngIf="(frmCustomer.get('streetAddress')?.invalid||frmCustomer.get('streetAddress')?.errors?.['required'])&& (frmCustomer.get('streetAddress')?.dirty || frmCustomer.get('streetAddress')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+              <!-- <input type="text"> -->
+            </div>
+            <div class="col-lg-12">
+              <label for="zip">Postcode / ZIP (optional)</label>
+              <input type="text" id="zip" formControlName="postcode" />
+            </div>
+            <div class="col-lg-12">
+              <label for="town">Town / City<span>*</span></label>
+              <input type="text" id="town" formControlName="city" />
+              <p
+              *ngIf="(frmCustomer.get('city')?.invalid||frmCustomer.get('city')?.errors?.['required'])&& (frmCustomer.get('city')?.dirty || frmCustomer.get('city')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-6">
+              <label for="email">Email Address<span>*</span></label>
+              <input type="text" id="email" formControlName="email" />
+              <p
+              *ngIf="(frmCustomer.get('email')?.invalid||frmCustomer.get('email')?.errors?.['required'])&& (frmCustomer.get('email')?.dirty || frmCustomer.get('email')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-6">
+              <label for="phone">Phone<span>*</span></label>
+              <input type="text" id="phone" formControlName="phone" />
+              <p
+              *ngIf="(frmCustomer.get('phone')?.invalid||frmCustomer.get('phone')?.errors?.['required'])&& (frmCustomer.get('phone')?.dirty || frmCustomer.get('phone')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-12">
+              <div *ngIf="customer.id==0" class="create-item" >
+                <label for="acc-create">
+                  Create an account?
+                  <input type="checkbox" id="acc-create" />
+                  <span  class="checkmark" (click)="btnCheckAccount()"></span>
+                </label>
+              </div>
+            </div>
+          </form>
+          <div class="order-btn">
+            <button (click)="btnUpadate(frmCustomer)" type="submit" class="site-btn place-btn">
+              Upadate Information
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- Shopping Cart Section End -->

@@ -1,0 +1,75 @@
+<div>
+  <table class="list-order" border="1" cellspacing="0" cellpadding="5">
+    <tr class="form-group">
+      <th>Mã đơn hàng</th>
+      <!-- <th>Mã sản phẩm</th> -->
+      <th>Tên đơn hàng</th>
+      <th>Email</th>
+      <th>Địa chỉ</th>
+      <th>Số điện thoại</th>
+      <th>Total</th>
+      <th>Ngày tạo</th>
+      <th>Ngày cập nhật</th>
+      <th>Trạng thái</th>
+      <th>Hành động</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <!-- <th>Mã sản phẩm</th> -->
+      <td>{{ order.firstName }} {{ order.lastName }}</td>
+      <td>{{ order.email }}</td>
+      <td>{{ order.streetAddress }}, {{ order.city }}, {{ order.country }}</td>
+      <td>{{ order.phone }}</td>
+      <td>{{ order.total| currency }}</td>
+      <td>{{ order.createDate | date: "yyyy-MM-dd" }}</td>
+      <td>{{ order.updateDate | date: "yyyy-MM-dd" }}</td>
+      <td>{{ order.status ? "Đã thanh toán" : "Chưa thanh toán" }}</td>
+      <td>
+        <button class="btn btn-primary btn-update" (click)="initUpdate(order)">
+          Duyệt
+        </button>
+        <!-- <a [routerLink]="[order.id]"> -->
+          <button class="btn btn-primary btn-margin" (click)="review(order.id)">Chi tiết</button>
+          <!-- </a> -->
+      </td>
+    </tr>
+  </table>
+  <div class="product-show-option">
+    <div class="row">
+      <div class="page_number col-lg-12 col-md-12 text-right">
+        <span>Pages: </span>
+        <ul>
+          <li
+            (click)="
+              filter.page != 0
+                ? (filter.page = filter.page - 1)
+                : (filter.page = filter.page)
+            "
+            (click)="initPage(filter.page)"
+          >
+            «
+          </li>
+          <li
+            (click)="initPage(item.stt)"
+            *ngFor="let item of pageOrder"
+            [ngClass]="{ 'page-active': item.stt == filter.page }"
+          >
+            {{ item.stt + 1 }}
+          </li>
+          <!-- <li><a href="#">{{i}}</a></li> -->
+          <!-- <li (click)="initPage(item.stt)"  *ngFor=" let item of pageOrder" class=""  [ngStyle]="activeBtn? {'color':item.colorSTT}:{'color':'#000'}">{{item.stt+1}}</li> -->
+          <li
+            (click)="
+              filter.page != pageOrder.length - 1
+                ? (filter.page = filter.page + 1)
+                : (filter.page = filter.page)
+            "
+            (click)="initPage(filter.page)"
+          >
+            »
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

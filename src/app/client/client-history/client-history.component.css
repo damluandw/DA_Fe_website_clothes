@@ -1,0 +1,54 @@
+.change_quatity_product {
+  display: flex;
+  line-height: 30px;
+}
+
+.change_quatity_item {
+  display: flex;
+  /* margin-left: 12px; */
+}
+
+.change_quatity {
+  background-color: #ccc;
+  height: 30px;
+  width: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.quatity_number {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+}
+
+.change_quatity_pre {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.change_quatity_add {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.header-table tr th{
+  /* margin: auto; */
+}
+.cart-table tbody{
+  /* padding-top: 30px; */
+}
+img{
+  width: 170px;
+  height: 170px;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.cart-buttons .continue-shop{
+  color: #252525;
+  background: #f3f3f3;
+  border: 2px solid #ebebeb;
+  padding: 12px 20px 12px 20px;
+}
+

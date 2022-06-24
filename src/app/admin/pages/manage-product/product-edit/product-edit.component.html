@@ -1,0 +1,235 @@
+<div>
+  <div class="from">
+    <table class="edit-product-body">
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">ID sản phẩm</th>
+        <td class="col-sm-8">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="product.id"
+            name="id"
+          />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Tên sản phẩm</th>
+        <td class="col-sm-8">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="product.name"
+            name="name"
+          />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Giá nhập</th>
+        <td class="col-sm-8">
+          <input
+            class="form-control"
+            type="number"
+            [(ngModel)]="product.priceIn"
+            name="priceIn"
+          />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Giá bán</th>
+        <td class="col-sm-8">
+          <input
+            class="form-control"
+            type="number"
+            [(ngModel)]="product.priceOut"
+            name="priceOut"
+          />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Discount</th>
+        <td class="col-sm-8">
+          <input
+            class="form-control"
+            type="number"
+            [(ngModel)]="product.discount"
+            name="discount"
+          />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Ảnh chính</th>
+        <td class="col-sm-8 custom-file">
+          <input class="file-input"
+            enctype="multipart/form-data"
+
+            (change)="selectedFile($event)"
+            type="file"
+            accept=".png,.jpg,.jpeg"
+            id="image"
+          />
+          <!-- <label class="custom-file-label" for="image">Choose file</label> -->
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Ảnh phụ</th>
+        <td class="col-sm-8 custom-file">
+          <input class="file-input"
+            enctype="multipart/form-data"
+
+            (change)="selectedFiles($event)"
+            type="file"
+            accept=".png,.jpg,.jpeg"
+            id="images"
+            multiple
+          />
+          <!-- <label class="custom-file-label" for="image">Choose file</label> -->
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Mô tả</th>
+        <td class="col-sm-8">
+          <textarea
+            class="form-control"
+            [(ngModel)]="product.description"
+            name="description"
+          ></textarea
+          ><br />
+          <!-- <input class="form-control" type="text" [(ngModel)]="product.description" name="description"> -->
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Nhà cung cấp</th>
+        <td class="col-sm-8">
+          <select class="form-control" [(ngModel)]="product.provider.id">
+            <option value="{{ item.id }}" *ngFor="let item of providers">
+              {{ item.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Nhãn Hàng</th>
+        <td class="col-sm-8">
+          <select class="form-control" [(ngModel)]="product.brand.id">
+            <option value="{{ br.id }}" *ngFor="let br of brands">
+              {{ br.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Hiện thị trang thủ</th>
+        <td class="col-sm-8 form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="product.showHome"
+            name="showHome"
+          />
+          <label for="showHome" class="form-check-label">Hiển thị</label>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Trạng thái</th>
+        <td class="col-sm-8 form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="product.status"
+            name="status"
+          />
+          <label for="status" class="form-check-label">Hoạt động</label>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">&nbsp;</th>
+        <td class="col-sm-8">
+          <button class="btn btn-primary" (click)="update()">Lưu</button>
+          <button class="btn btn-primary btn-margin" (click)="initReset()">
+            Reset
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <table class="list-product" border="1" cellspacing="0" cellpadding="5">
+      <tr class="form-group">
+        <th>STT</th>
+        <!-- <th>Mã sản phẩm</th> -->
+        <th>Tên sản phẩm</th>
+        <th>Giá nhập</th>
+        <th>Giá bán</th>
+        <th>Discount</th>
+        <th>Image</th>
+        <th>Nhà cung cấp</th>
+        <th>Nhãn hàng</th>
+        <th>Ngày tạo</th>
+        <th>Ngày chỉnh sửa</th>
+        <th>Trang chủ</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+      </tr>
+      <tr *ngFor="let pro of products; let i = index">
+        <td>{{ i + 1 }}</td>
+        <!-- <td>{{ item.id }}</td> -->
+        <td>{{ pro.name }}</td>
+        <td>{{ pro.priceIn }}</td>
+        <td>{{ pro.priceOut }}</td>
+        <td>{{ pro.discount }}</td>
+        <td><img class="pro-img" src="{{ pro.image }}" alt="" /></td>
+        <td>{{ pro.provider.name }}</td>
+        <td>{{ pro.brand.name }}</td>
+        <td>{{ pro.createDate | date: "yyyy-MM-dd HH:mm:ss" }}</td>
+        <td>{{ pro.updateDate | date: "yyyy-MM-dd HH:mm:ss" }}</td>
+        <td>{{ pro.showHome ? "Hiện thị" : "Ẩn" }}</td>
+        <td>{{ pro.status ? "Hoạt động" : "Ẩn" }}</td>
+        <td>
+          <button class="btn btn-primary btn-update" (click)="initUpdate(pro)">
+            Sửa</button
+          ><button class="btn btn-primary" (click)="remove(pro)">
+            Xóa
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="product-show-option">
+    <div class="row">
+      <div class="page_number col-lg-12 col-md-12 text-right">
+        <span>Pages: </span>
+        <ul>
+          <li
+            (click)="
+              filter.page != 0
+                ? (filter.page = filter.page - 1)
+                : (filter.page = filter.page)
+            "
+            (click)="initPage(filter.page)"
+          >
+            «
+          </li>
+          <li
+            (click)="initPage(item.stt)"
+            *ngFor="let item of pageSize"
+            [ngClass]="{ 'page-active': item.stt == filter.page }"
+          >
+            {{ item.stt + 1 }}
+          </li>
+          <!-- <li><a href="#">{{i}}</a></li> -->
+          <!-- <li (click)="initPage(item.stt)"  *ngFor=" let item of pageSize" class=""  [ngStyle]="activeBtn? {'color':item.colorSTT}:{'color':'#000'}">{{item.stt+1}}</li> -->
+          <li
+            (click)="
+              filter.page != pageSize.length - 1
+                ? (filter.page = filter.page + 1)
+                : (filter.page = filter.page)
+            "
+            (click)="initPage(filter.page)"
+          >
+            »
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

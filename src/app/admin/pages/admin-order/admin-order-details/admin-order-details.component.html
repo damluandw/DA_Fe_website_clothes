@@ -1,0 +1,83 @@
+<div>
+  <button class="btn btn-back" (click)="btnBack()">
+    Quay lại
+</button>
+  <table class="order" border="1" cellspacing="0" cellpadding="5">
+    <tr class="form-group">
+      <th>Mã đơn hàng</th>
+      <!-- <th>Mã sản phẩm</th> -->
+      <th>Tên đơn hàng</th>
+      <th>Email</th>
+      <th>Địa chỉ</th>
+      <th>Số điện thoại</th>
+      <th>Ngày tạo</th>
+      <th>Ngày thanh toán</th>
+      <th>Total</th>
+      <th>Trạng thái</th>
+      <th>Hành động</th>
+    </tr>
+    <tr>
+      <td>{{ order.id }}</td>
+      <!-- <th>Mã sản phẩm</th> -->
+      <td>{{ order.firstName }} {{ order.lastName }}</td>
+      <td>{{ order.email }}</td>
+      <td>{{ order.streetAddress }}, {{ order.city }}, {{ order.country }}</td>
+      <td>{{ order.phone }}</td>
+      <td>{{ order.createDate | date: "yyyy-MM-dd" }}</td>
+      <td>{{ order.updateDate | date: "yyyy-MM-dd" }}</td>
+      <td>{{ order.total|currency }}</td>
+      <td>{{ order.status ? "Đã thanh toán" : "Chưa tdanh toán" }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="initUpdate(order)">
+          Duyệt
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <h3>Danh sách Order Detail</h3>
+  <table class="order-Detail" border="1" cellspacing="0" cellpadding="5">
+    <thead class="header-table">
+      <tr>
+        <th>Image</th>
+        <th class="p-name">Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Total</th>
+        <th>Create Date</th>
+        <th>Status</th>
+        <!-- <th>Hành Động</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderDetails">
+        <td class="cart-pic">
+          <img src="{{ item.product.image }}" alt="" />
+        </td>
+        <td class="cart-title">
+          <h5>{{ item.product.name }}</h5>
+        </td>
+        <td class="p-price">{{ item.price |currency}}</td>
+        <td class="-">
+          <div>{{ item.quatity }}</div>
+        </td>
+        <td class="item-color">{{ item.color.color }}</td>
+        <td class="item-size">{{ item.size.size }}</td>
+        <td class="total-price">{{ item.quatity * item.price |currency}}</td>
+        <td class="">
+          {{ item.createDate | date: "yyyy-MM-dd HH:mm:ss" }}
+        </td>
+        <td class="">
+          {{ item.status ? "Đã thanh toán" : "Chưa thanh toán" }}
+        </td>
+        <!-- <td>
+          <button class="btn btn-primary" (click)="initUpdate(item)">
+            Duyệt
+          </button>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

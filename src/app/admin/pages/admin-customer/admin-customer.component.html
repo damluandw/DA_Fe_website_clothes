@@ -1,0 +1,34 @@
+<div>
+  <!-- <button class="btn btn-back" (click)="btnBack()">
+    Quay lại
+</button> -->
+  <table class="list-customer" border="1" cellspacing="0" cellpadding="5">
+    <tr class="form-group">
+      <th>ID</th>
+      <!-- <th>Mã sản phẩm</th> -->
+      <th>Tên người dùng</th>
+      <th>Email</th>
+      <th>Địa chỉ</th>
+      <th>Số điện thoại</th>
+      <th>Ngày tạo</th>
+      <th>Trạng thái</th>
+      <!-- <th>Hành động</th> -->
+    </tr>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.id }}</td>
+      <!-- <th>Mã sản phẩm</th> -->
+      <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.streetAddress }}, {{ customer.city }}, {{ customer.country }}</td>
+      <td>{{ customer.phone }}</td>
+      <td>{{ customer.createDate | date: "yyyy-MM-dd" }}</td>
+
+      <td>{{ customer.status ? "Đã xác minh" : "Chưa xác minh" }}</td>
+      <!-- <td>
+        <button class="btn btn-primary" (click)="initShowDetail(customer.id)">
+          Chi tiết
+        </button>
+      </td> -->
+    </tr>
+  </table>
+</div>

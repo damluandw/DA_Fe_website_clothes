@@ -1,0 +1,92 @@
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text product-more">
+          <a><i class="fa fa-home"></i> Home</a>
+          <a (click)="switchShop()">Shop</a>
+          <span>History Cart Detail</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="cart-buttons">
+          <a (click)="btnBack()" class="primary-btn continue-shop">Back</a>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="cart-table">
+          <table
+            class="order-Detail"
+            border="1"
+            cellspacing="0"
+            cellpadding="5"
+          >
+            <thead class="header-table">
+              <tr>
+                <th>Image</th>
+                <th class="p-name">Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Color</th>
+                <th>Size</th>
+                <th>Total</th>
+                <th>Create Date</th>
+                <th>Status</th>
+                <!-- <th>Hành Động</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of orderDetails">
+                <td class="cart-pic">
+                  <img src="{{ item.product.image }}" alt="" />
+                </td>
+                <td class="cart-title">
+                  <h5>{{ item.product.name }}</h5>
+                </td>
+                <td class="p-price">{{ item.price | currency }}</td>
+                <td class="-">
+                  <div>{{ item.quatity }}</div>
+                </td>
+                <td class="item-color">{{ item.color.color }}</td>
+                <td class="item-size">{{ item.size.size }}</td>
+                <td class="total-price">
+                  {{ item.quatity * item.price | currency }}
+                </td>
+                <td class="">
+                  {{ item.createDate | date: "yyyy-MM-dd HH:mm:ss" }}
+                </td>
+                <td class="">
+                  {{ item.status ? "Đã thanh toán" : "Chưa thanh toán" }}
+                </td>
+                <!-- <td>
+                  <button class="btn btn-primary" (click)="initUpdate(item)">
+                    Duyệt
+                  </button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="cart-buttons">
+              <a (click)="switchShop()" class="primary-btn continue-shop"
+                >Continue shopping</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Shopping Cart Section End -->

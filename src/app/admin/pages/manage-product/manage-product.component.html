@@ -1,0 +1,24 @@
+ <!-- Content Header (Page header) -->
+ <section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Manage Product</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a>Home</a></li>
+          <li class="breadcrumb-item active">Manage Product</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+<button class="btn btn-primary router" [ngClass]="{ 'router-active': routerActive == 'add' }" (click)="routerActive='add'"><a routerLink="add">Thêm Sản phẩm</a></button>
+<button class="btn btn-primary router" [ngClass]="{ 'router-active': routerActive == 'edit' }" (click)="routerActive='edit'"><a routerLink="edit">Sửa Sản phẩm</a></button>
+<button class="btn btn-primary router" [ngClass]="{ 'router-active': routerActive == 'cate' }" (click)="routerActive='cate'"><a routerLink="map-product-categories">Sản phẩm - Danh Mục</a></button>
+<button class="btn btn-primary router" [ngClass]="{ 'router-active': routerActive == 'size' }" (click)="routerActive='size'"><a routerLink="map-product-size">Sản phẩm-Size</a></button>
+<button class="btn btn-primary router" [ngClass]="{ 'router-active': routerActive == 'color' }" (click)="routerActive='color'"><a routerLink="map-product-color">Sản phẩm-Color</a></button>
+<button class="btn btn-primary router" [ngClass]="{ 'router-active': routerActive == 'style' }" (click)="routerActive='style'"><a routerLink="map-product-style">Sản phẩm-Style</a></button>
+<router-outlet></router-outlet>
+

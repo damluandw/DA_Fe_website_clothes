@@ -1,0 +1,44 @@
+.add-product-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+
+table {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  border-collapse: inherit;
+  width: 50%;
+}
+
+.custom-file {
+  /* margin-left: 8px; */
+  width: 100%;
+  position: absolute
+}
+
+.form-check {
+  margin-left: 8px;
+  width: 100%;
+}
+
+
+.file-input {
+  position: unset;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem rem 0.75rem;
+  overflow: hidden;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  width: 38%;
+}

@@ -1,0 +1,108 @@
+<div>
+  <div class="from">
+    <table class="edit-product-body">
+      <!-- <tr>
+        <th>ID map product-category</th>
+        <td>
+          <input type="text" [(ngModel)]="productCategory.id" name="id" />
+        </td>
+      </tr> -->
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Sản phẩm</th>
+        <td class="col-sm-8">
+          <select class="form-control" [(ngModel)]="productColor.product.id">
+            <option value="{{ pro.id }}" *ngFor="let pro of products">
+              {{ pro.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Danh sách Color</th>
+        <td class="col-sm-8">
+          <select class="form-control" [(ngModel)]="productColor.color.id">
+            <option value="{{ item.id }}" *ngFor="let item of colors">
+              {{ item.color }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>&nbsp;</th>
+        <td>
+          <button class="btn btn-primary btn-margin" (click)="add()">Thêm mới</button>
+          <button class="btn btn-primary btn-margin" (click)="update()">
+            Lưu
+          </button>
+          <button class="btn btn-primary btn-margin" (click)="initReset()">
+            Reset
+          </button>
+          <!-- <button (click)="loadProducts()">Sản phẩm đủ</button>
+          <button (click)="loadProductsNoCategory()">Sản phẩm chưa liên kết</button> -->
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <table class="list-product" border="1" cellspacing="0" cellpadding="5">
+      <tr>
+        <th>STT</th>
+        <th>Id sản phẩm</th>
+        <th>Tên sản phẩm</th>
+        <th>Tên danh mục</th>
+        <th>Hành động</th>
+      </tr>
+      <tr *ngFor="let item of productColors; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.product.id }}</td>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.color.color }}</td>
+        <td>
+          <button class="btn btn-primary btn-update" (click)="initUpdate(item)">
+            Sửa</button
+          ><button class="btn btn-primary btn-margin" (click)="remove(item)">
+            Xóa
+          </button>
+        </td>
+      </tr>
+    </table>
+    <div class="product-show-option">
+      <div class="row">
+        <div class="page_number col-lg-12 col-md-12 text-right">
+          <span>Pages: </span>
+          <ul>
+            <li
+              (click)="
+                filter.page != 0
+                  ? (filter.page = filter.page - 1)
+                  : (filter.page = filter.page)
+              "
+              (click)="initPage(filter.page)"
+            >
+              «
+            </li>
+            <li
+              (click)="initPage(item.stt)"
+              *ngFor="let item of pageSize"
+              [ngClass]="{ 'page-active': item.stt == filter.page }"
+            >
+              {{ item.stt + 1 }}
+            </li>
+            <!-- <li><a href="#">{{i}}</a></li> -->
+            <!-- <li (click)="initPage(item.stt)"  *ngFor=" let item of pageSize" class=""  [ngStyle]="activeBtn? {'color':item.colorSTT}:{'color':'#000'}">{{item.stt+1}}</li> -->
+            <li
+              (click)="
+                filter.page != pageSize.length - 1
+                  ? (filter.page = filter.page + 1)
+                  : (filter.page = filter.page)
+              "
+              (click)="initPage(filter.page)"
+            >
+              »
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

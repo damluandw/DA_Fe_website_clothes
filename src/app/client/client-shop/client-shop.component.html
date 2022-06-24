@@ -1,0 +1,277 @@
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text">
+          <a href="#"><i class="fa fa-home"></i> Home</a>
+          <span>Shop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<!-- Product Shop Section Begin -->
+<section class="product-shop spad">
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter"
+      >
+        <div class="filter-widget">
+          <h4 class="fw-title">Categories</h4>
+          <ul class="filter-catagories">
+            <li [ngClass]="{ 'filter-active': filterActive == 'Men' }"><a (click)="switchData('category', 'Men')">Men</a></li>
+            <li [ngClass]="{ 'filter-active': filterActive == 'Women' }"><a (click)="switchData('category', 'Women')">Women</a></li>
+            <li [ngClass]="{ 'filter-active': filterActive == 'Kid' }"><a (click)="switchData('category', 'Kid')">Kids</a></li>
+          </ul>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Brand</h4>
+          <ul class="filter-brand">
+            <li [ngClass]="{ 'filter-active': filterActive == item.name }" *ngFor="let item of brands">
+              <a id="{{ item.id }}" (click)="switchData('brand', item.name)">
+                {{ item.name }}</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Price</h4>
+          <div class="filter-range-wrap">
+            <div class="range-slider">
+              <div class="price-input">
+                <input
+                  [(ngModel)]="filter.priceMin"
+                  type="text"
+                  id="minamount"
+                />
+                <input
+                  [(ngModel)]="filter.priceMax"
+                  type="text"
+                  id="maxamount"
+                />
+              </div>
+            </div>
+            <!-- <div
+              class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+              data-min="0"
+              data-max="100"
+            >
+              <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+              <span
+                tabindex="0"
+                class="ui-slider-handle ui-corner-all ui-state-default"
+              ></span>
+              <span
+                tabindex="0"
+                class="ui-slider-handle ui-corner-all ui-state-default"
+              ></span>
+            </div> -->
+          </div>
+          <a (click)="switchData('price', 'price')" class="filter-btn"
+            >Filter</a
+          >
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Color</h4>
+          <div class="fw-color-choose">
+            <div [ngClass]="{ 'filter-active': filterActive == item.color }" class="cs-item" *ngFor="let item of colors">
+              <input
+                type="radio"
+                id="cs-{{ item.color }}"
+                (click)="switchData('color', item.color)"
+              />
+              <label class="cs-{{ item.color }}" for="cs-{{ item.color }}">{{
+                item.color
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Size</h4>
+          <div class="fw-size-choose">
+            <div [ngClass]="{ 'filter-active': filterActive == item.size }" class="sc-item" *ngFor="let item of sizes">
+              <input
+                *ngIf="item.id != 6"
+                type="radio"
+                id="{{ item.size }}-size"
+                (click)="switchData('size', item.size)"
+              />
+              <label *ngIf="item.id != 6" for="{{ item.size }}-size">{{
+                item.size
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="filter-widget">
+          <h4 class="fw-title">Style</h4>
+          <div class="fw-tags">
+            <a [ngClass]="{ 'filter-active': filterActive == item.style }"
+              (click)="switchData('style', item.style)"
+              *ngFor="let item of styles"
+              >{{ item.style }}</a
+            >
+            <!-- <a href="#">Shoes</a>
+            <a href="#">Coat</a>
+            <a href="#">Dresses</a>
+            <a href="#">Trousers</a>
+            <a href="#">Men's hats</a>
+            <a href="#">Backpack</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 order-1 order-lg-2">
+        <div class="product-show-option">
+          <div class="row">
+            <div class="col-lg-7 col-md-7">
+              <div class="select-option-filter">
+                <!-- <select class="sort-filter" (ngModelChange)="initFilter()" [(ngModel)]="mySortIdFilter">
+                  <option value="{{ item.id }}" *ngFor="let item of mySorts">
+                    {{ item.name }}
+                  </option>
+                </select> -->
+                <select class="sort-filter" [(ngModel)]="filter.mySort.sortBy" (ngModelChange)="initSortBy()"  >
+                  <option value="{{item.flt}}" *ngFor="let item of mySortByFilters">
+                    {{item.name}}
+                  </option>
+                </select>
+                <select class="sort-filter" [(ngModel)]="filter.mySort.sort" (ngModelChange)="initSort()"  >
+                  <option value="{{item.name}}" *ngFor="let item of mySortFilters">
+                    {{item.name}}
+                  </option>
+
+                </select>
+                <select class="sort-filter" [(ngModel)]="filter.sizePage" (ngModelChange)="initSizePage()">
+                  <option
+                    value="{{ item.sizePage }}"
+                    *ngFor="let item of mySizePages"
+                  >
+                    Show: {{ item.sizePage }}
+                  </option>
+                </select>
+                <!-- <button
+                  class="btn btn-filter"
+                  type="submit"
+                  (click)="initFilter()"
+                >
+                  Filter
+                </button> -->
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-5 text-right">
+              <p class="show-number-product">
+                Show {{ products.length }} product Of
+                {{ countProducts }} Product
+              </p>
+            </div>
+          </div>
+          <div *ngIf="filterName != ''" class="filter-by">
+            <div>
+              Filter by {{ switchName }}: {{ filterName }}
+              <i (click)="removeFilter()" class="fa-solid fa-xmark"> </i>
+            </div>
+          </div>
+          <!-- <div class="list-filter">
+            <div *ngIf="filter.categoryName!='default'"></div>
+            <div *ngIf="filter.brand!='default'"></div>
+            <div *ngIf="filter.color!='default'"></div>
+            <div *ngIf="filter.size!='default'"></div>
+            <div *ngIf="filter.style!='default'"></div>
+          </div> -->
+        </div>
+        <div class="product-list">
+          <div class="row">
+            <div class="col-lg-4 col-sm-6" *ngFor="let p of products">
+              <div class="product-item">
+                <div class="pi-pic">
+                  <img src="{{ p.image }}" alt="" />
+                  <div *ngIf="p.discount - p.priceOut > 0" class="sale pp-sale">
+                    Sale
+                  </div>
+                  <div class="icon">
+                    <i class="icon_heart_alt"></i>
+                  </div>
+                  <ul>
+                    <li class="w-icon active">
+                      <a href="#"><i class="icon_bag_alt"></i></a>
+                    </li>
+                    <li class="quick-view">
+                      <a [routerLink]="['details', p.id, p.name]"
+                        >+ Quick View</a
+                      >
+                    </li>
+                    <!-- <li class="w-icon">
+                      <a href="#"><i class="fa fa-random"></i></a>
+                    </li> -->
+                  </ul>
+                </div>
+                <div class="pi-text">
+                  <div class="catagory-name">{{ p.brand.name }}</div>
+                  <a [routerLink]="['details', p.id, p.name]">
+                    <h5>{{ p.name }}</h5>
+                  </a>
+                  <div class="product-price">
+                    {{ p.priceOut }}
+                    <span *ngIf="p.discount - p.priceOut > 0">{{
+                      p.discount
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="loading-more">
+          <i class="icon_loading"></i>
+          <a href="#"> Loading More </a>
+        </div> -->
+
+        <!--pagination style start-->
+        <div class="product-show-option">
+          <div class="row">
+            <div class="page_number col-lg-12 col-md-12 text-right">
+              <span>Pages: </span>
+              <ul>
+                <li
+                  (click)="
+                    filter.page != 0
+                      ? (filter.page = filter.page - 1)
+                      : (filter.page = filter.page)
+                  "
+                  (click)="initPage(filter.page)"
+                >
+                  «
+                </li>
+                <li
+                  (click)="initPage(item.stt)"
+                  *ngFor="let item of pageSize"
+                  [ngClass]="{ 'page-active': item.stt == filter.page }"
+                >
+                  {{ item.stt + 1 }}
+                </li>
+                <!-- <li><a href="#">{{i}}</a></li> -->
+                <!-- <li (click)="initPage(item.stt)"  *ngFor=" let item of pageSize" class=""  [ngStyle]="activeBtn? {'color':item.colorSTT}:{'color':'#000'}">{{item.stt+1}}</li> -->
+                <li
+                  (click)="
+                    filter.page != pageSize.length - 1
+                      ? (filter.page = filter.page + 1)
+                      : (filter.page = filter.page)
+                  "
+                  (click)="initPage(filter.page)"
+                >
+                  »
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!--pagination style end-->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Product Shop Section End -->

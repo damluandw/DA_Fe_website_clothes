@@ -1,0 +1,52 @@
+<!-- Google Font -->
+<link
+  href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css" />
+<link
+  rel="stylesheet"
+  href="/assets/css/font-awesome.min.css"
+  type="text/css"
+/>
+<link rel="stylesheet" href="/assets/css/themify-icons.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/elegant-icons.css" type="text/css" />
+<link
+  rel="stylesheet"
+  href="/assets/css/owl.carousel.min.css"
+  type="text/css"
+/>
+<link rel="stylesheet" href="/assets/css/nice-select.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/slicknav.min.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+/>
+
+<body>
+  <app-client-header
+    [favorite]="favorite"
+    [order]="order"
+    [customer]="customer"
+  ></app-client-header>
+  <router-outlet (activate)="communicate($event)"></router-outlet>
+  <app-client-footer></app-client-footer>
+
+  <!-- all js here -->
+  <!-- Js Plugins -->
+  <!-- <script src="/assets/js/jquery-3.3.1.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/jquery-ui.min.js"></script>
+  <script src="/assets/js/jquery.countdown.min.js"></script>
+  <script src="/assets/js/jquery.nice-select.min.js"></script>
+  <script src="/assets/js/jquery.zoom.min.js"></script>
+  <script src="/assets/js/jquery.dd.min.js"></script>
+  <script src="/assets/js/jquery.slicknav.js"></script>
+  <script src="/assets/js/owl.carousel.min.js"></script>
+  <script src="/assets/js/main.js"></script> -->
+</body>
+

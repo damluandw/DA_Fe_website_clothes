@@ -1,0 +1,55 @@
+.cart-hover .select-items .si-pic {
+  width: 70px;
+  height: 70px;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.account {
+  cursor: pointer;
+  position: relative;
+}
+.item-account{
+  width: 100%;
+}
+.account-hover li{
+  margin-left: 10px;
+}
+.account-hover {
+  cursor: pointer;
+  position: absolute;
+  width: 150%;
+  background: #fff;
+  left: 0;
+  top: 62px;
+  opacity: 0;
+  visibility: hidden;
+  /* padding: 10px; */
+  -webkit-box-shadow: 0 13px 32px rgb(51 51 51 / 10%);
+  box-shadow: 0 13px 32px rgb(51 51 51 / 10%);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+ul li{
+  list-style: none;
+}
+.account-hover li{
+  padding: 10px 6px;
+}
+.account:hover .account-hover {
+  top: 52px;
+  opacity: 1;
+  visibility: visible;
+  z-index: 99;
+}
+
+.account-hover li:hover a{
+  color: rgb(60, 65, 208);
+}
+.filter-active a{
+  color: #e7ab3c;
+}
+.inner-header .advanced-search .input-group input{
+  color: #000;
+}

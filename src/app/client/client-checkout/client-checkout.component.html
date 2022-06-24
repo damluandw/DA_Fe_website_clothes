@@ -1,0 +1,175 @@
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text product-more">
+          <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+          <a href="./shop.html">Shop</a>
+          <span>Check Out</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<!-- Shopping Cart Section Begin -->
+<section class="checkout-section spad">
+  <div class="container">
+    <form action="#" class="checkout-form">
+      <div class="row">
+        <div class="col-lg-6">
+          <div *ngIf="customer.id==0" class="checkout-content">
+            <a (click)="switchLogin()" class="content-btn">Click Here To Login</a>
+          </div>
+          <div *ngIf="customer.id!=0" class="checkout-content">
+            <a (click)="switchShop()" class="content-btn">Click Here To Shop Continue</a>
+          </div>
+          <h4>Biiling Details</h4>
+          <form [formGroup]="frmOrder" class="row">
+            <div class="col-lg-6">
+              <label for="fir">First Name<span>*</span></label>
+              <input type="text" id="fir" formControlName="firstName" />
+              <p
+                *ngIf="(frmOrder.get('firstName')?.invalid||frmOrder.get('firstName')?.errors?.['required'])&& (frmOrder.get('firstName')?.dirty || frmOrder.get('firstName')?.touched)"
+              >
+                Vui lòng không để trống
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <label for="last">Last Name<span>*</span></label>
+              <input type="text" id="last" formControlName="lastName" />
+              <p
+              *ngIf="(frmOrder.get('lastName')?.invalid||frmOrder.get('lastName')?.errors?.['required'])&& (frmOrder.get('lastName')?.dirty || frmOrder.get('lastName')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <!-- <div class="col-lg-12">
+              <label for="cun-name">Company Name</label>
+              <input type="text" id="cun-name" formControlName="companyName" />
+            </div> -->
+            <div class="col-lg-12">
+              <label for="cun">Country<span>*</span></label>
+              <input type="text" id="cun" formControlName="country" />
+              <p
+              *ngIf="(frmOrder.get('country')?.invalid||frmOrder.get('country')?.errors?.['required'])&& (frmOrder.get('country')?.dirty || frmOrder.get('country')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-12">
+              <label for="street">Street Address<span>*</span></label>
+              <input
+                type="text"
+                id="street"
+                class="street-first"
+                formControlName="streetAddress"
+              />
+              <p
+              *ngIf="(frmOrder.get('streetAddress')?.invalid||frmOrder.get('streetAddress')?.errors?.['required'])&& (frmOrder.get('streetAddress')?.dirty || frmOrder.get('streetAddress')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+              <!-- <input type="text"> -->
+            </div>
+            <div class="col-lg-12">
+              <label for="zip">Postcode / ZIP (optional)</label>
+              <input type="text" id="zip" formControlName="postcode" />
+            </div>
+            <div class="col-lg-12">
+              <label for="town">Town / City<span>*</span></label>
+              <input type="text" id="town" formControlName="city" />
+              <p
+              *ngIf="(frmOrder.get('city')?.invalid||frmOrder.get('city')?.errors?.['required'])&& (frmOrder.get('city')?.dirty || frmOrder.get('city')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-6">
+              <label for="email">Email Address<span>*</span></label>
+              <input type="text" id="email" formControlName="email" />
+              <p
+              *ngIf="(frmOrder.get('email')?.invalid||frmOrder.get('email')?.errors?.['required'])&& (frmOrder.get('email')?.dirty || frmOrder.get('email')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-6">
+              <label for="phone">Phone<span>*</span></label>
+              <input type="text" id="phone" formControlName="phone" />
+              <p
+              *ngIf="(frmOrder.get('phone')?.invalid||frmOrder.get('phone')?.errors?.['required'])&& (frmOrder.get('phone')?.dirty || frmOrder.get('phone')?.touched)"
+            >
+              Vui lòng không để trống
+            </p>
+            </div>
+            <div class="col-lg-12">
+              <div *ngIf="customer.id==0" class="create-item" >
+                <label for="acc-create">
+                  Create an account?
+                  <input type="checkbox" id="acc-create" (click)="btnCheckAccount()"/>
+                  <span  class="checkmark" ></span>
+                </label>
+              </div>
+              <div *ngIf="customer.id!=0" class="use-acc" >
+                <label for="use">
+                  Use Infor
+                  <input type="checkbox" id="use" (click)="btnCheckInforAccount()"/>
+                  <span  class="checkmark" ></span>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <div class="checkout-content">
+            <input type="text" placeholder="Enter Your Coupon Code" />
+          </div>
+          <div class="place-order">
+            <h4>Your Order</h4>
+            <div class="order-total">
+              <ul class="order-table">
+                <li>Product <span>Total</span></li>
+                <li *ngFor="let item of order.orderDetails" class="fw-normal">
+                  {{ item.product.name }} ({{ item.color.color }} ||
+                  {{ item.size.size }}) x {{ item.quatity }}
+                  <span>${{ item.quatity * item.price }}</span>
+                </li>
+                <li class="fw-normal">
+                  Subtotal <span>${{ order.total }}</span>
+                </li>
+                <li class="total-price">
+                  Total <span>${{ order.total }}</span>
+                </li>
+              </ul>
+              <div class="payment-check">
+                <div class="pc-item">
+                  <label for="pc-check">
+                    Cheque Payment
+                    <input type="checkbox" id="pc-check" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="pc-item">
+                  <label for="pc-paypal">
+                    Paypal
+                    <input type="checkbox" id="pc-paypal" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="order-btn">
+                <button (click)="btnPlaceOrder(frmOrder)" type="submit" class="site-btn place-btn">
+                  Place Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- Shopping Cart Section End -->

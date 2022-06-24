@@ -1,0 +1,129 @@
+<div>
+  <form action="" [formGroup]="frmProduct">
+    <table class="add-product-body">
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Tên sản phẩm</th>
+        <td class="col-sm-8">
+          <input class="form-control" type="text" formControlName="name" />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Giá nhập</th>
+        <td class="col-sm-8">
+          <input class="form-control" type="number" formControlName="priceIn" />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Giá bán</th>
+        <td class="col-sm-8">
+          <input
+            class="form-control"
+            type="number"
+            formControlName="priceOut"
+          />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Discount</th>
+        <td class="col-sm-8">
+          <input
+            class="form-control"
+            type="number"
+            formControlName="discount"
+          />
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Ảnh chính</th>
+        <td class="col-sm-8 custom-file">
+          <input class="file-input"
+            enctype="multipart/form-data"
+            formControlName="image"
+            (change)="selectedFile($event)"
+            type="file"
+            accept=".png,.jpg,.jpeg"
+            id="image"
+          />
+          <!-- <label class="custom-file-label" for="image">Choose file</label> -->
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Ảnh phụ</th>
+        <td class="col-sm-8 custom-file">
+          <input class="file-input"
+            enctype="multipart/form-data"
+            formControlName="images"
+            (change)="selectedFiles($event)"
+            type="file"
+            accept=".png,.jpg,.jpeg"
+            id="images"
+            multiple
+          />
+          <!-- <label class="custom-file-label" for="image">Choose file</label> -->
+        </td>
+
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Mô tả</th>
+        <td class="col-sm-8">
+          <textarea
+            class="form-control"
+            formControlName="description"
+          ></textarea
+          ><br />
+          <!-- <input type="text" [(ngModel)]="product.description" name="description"> -->
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Nhà cung cấp</th>
+        <td class="col-sm-8" formGroupName="provider">
+          <select formControlName="id" class="form-control">
+            <option value="{{ item.id }}" *ngFor="let item of providers">
+              {{ item.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">Nhãn Hàng</th>
+        <td class="col-sm-8" formGroupName="brand">
+          <select class="form-control" formControlName="id">
+            <option value="{{ br.id }}" *ngFor="let br of brands">
+              {{ br.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4">Hiện thị trang thủ</th>
+        <td class="col-sm-8 form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            formControlName="showHome"
+            id="showHome"
+          />
+          <label  for="showHome" class="form-check-label">Hiển thị</label>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4">Trạng thái</th>
+        <td class="col-sm-8 form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            formControlName="status"
+            id="status"
+          />
+          <label for="status" class="form-check-label">Hoạt động</label>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <th class="col-sm-4 col-form-label">&nbsp;</th>
+        <td class="col-sm-8">
+          <button class="btn btn-primary" (click)="add()">Thêm mới</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

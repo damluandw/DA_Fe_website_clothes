@@ -1,0 +1,57 @@
+<div>
+  <!-- Breadcrumb Section Begin -->
+  <div class="breacrumb-section">
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="breadcrumb-text product-more">
+            <a><i class="fa fa-home"></i> Home</a>
+            <a>Account</a>
+            <span>Account Information</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Breadcrumb Section Begin -->
+  <div class="container">
+    <table class="customer" border="1" cellspacing="1" cellpadding="5">
+      <tr>
+        <td>Tên người dùng:</td>
+        <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+      </tr>
+      <tr>
+        <td>Avatar</td>
+        <td><img class="img-avatar" src="{{ customer.avatar }}" alt=""></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>{{ customer.email }}</td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td>{{ customer.phone }}</td>
+      </tr>
+      <tr>
+        <td>Country:</td>
+        <td>{{ customer.country }}</td>
+      </tr>
+      <tr>
+        <td>City:</td>
+        <td>{{ customer.city }}</td>
+      </tr>
+      <tr>
+        <td>Street Adress:</td>
+        <td>{{ customer.streetAddress }}</td>
+      </tr>
+      <tr>
+        <td>Postcode:</td>
+        <td>{{ customer.postcode }}</td>
+      </tr>
+      <tr>
+        <td>Ngày đăng ký</td>
+        <td>{{ customer.createDate | date: "yyyy-MM-dd" }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

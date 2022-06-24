@@ -1,0 +1,13 @@
+.btn.btn-primary.router a{
+  color: #fff;
+}
+.btn.btn-primary.router{
+  color: #2785eb;
+  border-radius: 0;
+}
+td{
+  text-align: center;
+}
+.router-active{
+  background-color: #519dee;
+}
